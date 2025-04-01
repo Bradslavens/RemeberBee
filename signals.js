@@ -2,8 +2,8 @@
 
 // Ordered collection of signals
 const signals = [
-    154, 16, 226, 296, 354, 406, 24, 32, 592, 662,
-    40, 816, 916, 984, 54, 1172, 58, 1332, 62, 1402, 98
+  "S154", "S16RA", "S226", "S296", "S354", "S406", "S24RA", "S32RA", "S592", "S662",
+  "S40RA", "S816", "S44RA", "S916", "S984", "S54RA", "S1172", "S58RA", "S1332", "S62RA", "S1402", "S98RA"
   ];
   
   // Export the signals array
