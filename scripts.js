@@ -9,21 +9,45 @@ document.querySelectorAll('.hexagon').forEach(hexagon => {
     });
 });
 
-// Example: Log the signals array
-console.log(signals);
+const lineSelect = document.getElementById('lineSelect');
+
+// Dynamically populate lineSelect options
+Object.keys(signals).forEach((lineKey) => {
+  const option = document.createElement('option');
+  option.value = lineKey;
+  option.text = lineKey;
+  lineSelect.appendChild(option);
+});
+
+lineSelect.addEventListener('change', () => {
+  const selectedLine = lineSelect.value;
+  if (signals[selectedLine]) {
+    currentSignalIndex = 0; // Reset the signal index
+  } else {
+    console.error('Selected line does not exist in signals.');
+  }
+});
+
 let currentSignalIndex = 0;
+
 
 document.getElementById('submitButton').addEventListener('click', () => {
   const wordInput = document.getElementById('wordInput');
   const outputDiv = document.getElementById('outputDiv');
-  
+
   if (wordInput.value.trim()) {
-    if (wordInput.value.trim() === signals[currentSignalIndex]) {
+    // Access the selected line from the dropdown
+    const selectedLine = lineSelect.value;
+
+    // Access the array of signals for the selected line
+    const currentSignalArray = signals[selectedLine];
+
+    if (currentSignalArray && currentSignalArray.includes(wordInput.value.trim())) {
       outputDiv.textContent += (outputDiv.textContent ? ' ' : '') + wordInput.value.trim();
-      currentSignalIndex = (currentSignalIndex + 1) % signals.length; // Move to the next signal
     } else {
-      console.log("incorrect guess");
+      console.log("Incorrect guess or no signals available for the selected line.");
     }
+
     wordInput.value = ''; // Clear the input field
   }
 });
