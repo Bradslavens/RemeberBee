@@ -76,3 +76,19 @@ body {
 .hexagon:hover {
     cursor: pointer;
 }
+/* Default layout (desktop) */
+.container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: stretch; /* Stretch elements to fit the container */
+    gap: 10px; /* Add spacing between elements */
+}
+
+.dropdown-container,
+.honeycomb,
+#outputDiv,
+.input-container,
+.submit-container {
+    width: 100%; /* Make elements take full width */
+    text-align: center; /* Center-align text for better appearance */
+}
