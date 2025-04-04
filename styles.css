@@ -30,6 +30,7 @@ body {
     color: #000;
     text-transform: uppercase;
     position: relative;
+    user-select: none; /* Prevent text selection */
 }
 
 .hexagon.yellow {
