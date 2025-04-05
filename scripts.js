@@ -14,6 +14,7 @@ document.querySelectorAll('.hexagon').forEach(hexagon => {
 const lineSelect = document.getElementById('lineSelect');
 
 // Dynamically populate lineSelect options
+lineSelect.innerHTML = ''; // Clear existing options
 Object.keys(signals).forEach((lineKey) => {
   const option = document.createElement('option');
   option.value = lineKey;
