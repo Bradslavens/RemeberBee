@@ -46,8 +46,15 @@ document.getElementById('submitButton').addEventListener('click', () => {
     // Access the array of signals for the selected line
     const currentSignalArray = signals[selectedLine];
 
-    if (currentSignalArray && currentSignalArray.includes(wordInput.value.trim())) {
+    if (currentSignalArray && wordInput.value.trim() === currentSignalArray[currentSignalIndex]) {
       outputDiv.textContent += (outputDiv.textContent ? ' ' : '') + wordInput.value.trim();
+      currentSignalIndex++; // Move to the next signal in the array
+
+      // Check if we've reached the end of the array
+      if (currentSignalIndex >= currentSignalArray.length) {
+      currentSignalIndex = 0; // Reset the signal index
+      console.log("All signals for the selected line have been guessed correctly.");
+      }
     } else {
       // Clear the outputDiv and reset the currentSignalIndex
       outputDiv.textContent = ''; // Clear the output div
@@ -74,7 +81,7 @@ document.getElementById('submitButton').addEventListener('click', () => {
     
       // Remove the overlay after 1 second
       setTimeout(() => {
-        document.body.removeChild(overlay);
+      document.body.removeChild(overlay);
       }, 1000);
     
       console.log("Incorrect guess or no signals available for the selected line.");
