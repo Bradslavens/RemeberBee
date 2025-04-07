@@ -60,32 +60,31 @@ document.getElementById('submitButton').addEventListener('click', () => {
       outputDiv.textContent = ''; // Clear the output div
       currentSignalIndex = 0; // Reset the signal index
 
-      // Create a large red "X" overlay
+      // Create an overlay to display the correct answer
       const overlay = document.createElement('div');
-      overlay.textContent = 'X';
+      overlay.textContent = `Correct answer: ${currentSignalArray[currentSignalIndex+1]}`;
       overlay.style.position = 'fixed';
       overlay.style.top = '50%';
       overlay.style.left = '50%';
       overlay.style.transform = 'translate(-50%, -50%)';
-      overlay.style.fontSize = '100px';
-      overlay.style.color = 'red';
+      overlay.style.fontSize = '24px';
+      overlay.style.color = 'white';
       overlay.style.fontWeight = 'bold';
       overlay.style.zIndex = '1000';
-      overlay.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+      overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
       overlay.style.padding = '20px';
       overlay.style.borderRadius = '10px';
       overlay.style.textAlign = 'center';
-    
+        
       // Add the overlay to the body
       document.body.appendChild(overlay);
-    
-      // Remove the overlay after 1 second
+        
+      // Remove the overlay after 2 seconds
       setTimeout(() => {
-      document.body.removeChild(overlay);
-      }, 1000);
-    
-      console.log("Incorrect guess or no signals available for the selected line.");
-    }
+        document.body.removeChild(overlay);
+      }, 2000);
+        
+      console.log("Incorrect guess or no signals available for the selected line.");}
 
     wordInput.value = ''; // Clear the input field
   }
