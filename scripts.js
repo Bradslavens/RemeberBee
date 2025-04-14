@@ -24,6 +24,14 @@ lineSelect.addEventListener('change', () => {
   const selectedLine = lineSelect.value;
   if (signals[selectedLine]) {
     currentSignalIndex = 0; // Reset the signal index
+
+    // Update the contents of hexagon main-signal elements
+    const mainSignalHexagons = document.querySelectorAll('.hexagon.main-signal');
+    const signalPrefix = signals[selectedLine].signalPrefix;
+
+    mainSignalHexagons.forEach(hexagon => {
+      hexagon.textContent = signalPrefix; // Set the content to the signal prefix
+    });
   } else {
     console.error('Selected line does not exist in signals.');
   }
