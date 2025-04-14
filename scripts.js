@@ -37,7 +37,6 @@ let currentSignalIndex = 0;
 document.getElementById('submitButton').addEventListener('click', () => {
   const wordInput = document.getElementById('wordInput');
   const outputDiv = document.getElementById('outputDiv');
-  playClickSound(); // Play sound when hexagon is clicked
        
   if (wordInput.value.trim()) {
     // Access the selected line from the dropdown
@@ -52,8 +51,8 @@ document.getElementById('submitButton').addEventListener('click', () => {
 
       // Check if we've reached the end of the array
       if (currentSignalIndex >= currentSignalArray.length) {
-      currentSignalIndex = 0; // Reset the signal index
-      console.log("All signals for the selected line have been guessed correctly.");
+        currentSignalIndex = 0; // Reset the signal index
+        console.log("All signals for the selected line have been guessed correctly.");
       }
     } else {
       // Clear the outputDiv and reset the currentSignalIndex
@@ -62,7 +61,11 @@ document.getElementById('submitButton').addEventListener('click', () => {
 
       // Create an overlay to display the correct answer
       const overlay = document.createElement('div');
-      overlay.textContent = `Correct answer: ${currentSignalArray[currentSignalIndex+1]}`;
+      overlay.textContent = `Incorrect! The correct answer was: ${currentSignalArray[currentSignalIndex]}`;
+      currentSignalIndex++; // Advance the signal index to the next one
+      if (currentSignalIndex >= currentSignalArray.length) {
+        currentSignalIndex = 0; // Reset the signal index if it exceeds the array length
+      }
       overlay.style.position = 'fixed';
       overlay.style.top = '50%';
       overlay.style.left = '50%';
@@ -84,7 +87,8 @@ document.getElementById('submitButton').addEventListener('click', () => {
         document.body.removeChild(overlay);
       }, 2000);
         
-      console.log("Incorrect guess or no signals available for the selected line.");}
+      console.log("Incorrect guess or no signals available for the selected line.");
+    }
 
     wordInput.value = ''; // Clear the input field
   }
