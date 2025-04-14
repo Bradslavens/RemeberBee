@@ -1,5 +1,3 @@
-// filepath: /home/brads/projs/RememberBee/scripts.js
-
 import signals from './signals.js';
 import { playClickSound } from './click.js';
 
@@ -33,7 +31,6 @@ lineSelect.addEventListener('change', () => {
 
 let currentSignalIndex = 0;
 
-
 document.getElementById('submitButton').addEventListener('click', () => {
   const wordInput = document.getElementById('wordInput');
   const outputDiv = document.getElementById('outputDiv');
@@ -43,7 +40,7 @@ document.getElementById('submitButton').addEventListener('click', () => {
     const selectedLine = lineSelect.value;
 
     // Access the array of signals for the selected line
-    const currentSignalArray = signals[selectedLine];
+    const currentSignalArray = signals[selectedLine]?.signalList;
 
     if (currentSignalArray && wordInput.value.trim() === currentSignalArray[currentSignalIndex]) {
       outputDiv.textContent += (outputDiv.textContent ? ' ' : '') + wordInput.value.trim();
@@ -60,9 +57,9 @@ document.getElementById('submitButton').addEventListener('click', () => {
 
       // Create an overlay to display the correct answer
       const overlay = document.createElement('div');
-      const correctAnswer = currentSignalArray[currentSignalIndex]; // Store the correct answer
+      const correctAnswer = currentSignalArray?.[currentSignalIndex]; // Store the correct answer
       overlay.textContent = `Incorrect! The correct answer was: ${correctAnswer}`;
-      if (currentSignalIndex >= currentSignalArray.length) {
+      if (currentSignalIndex >= currentSignalArray?.length) {
         currentSignalIndex = 0; // Reset the signal index if it exceeds the array length
       }
       // Reset the game after displaying the correct answer
