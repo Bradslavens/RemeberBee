@@ -57,13 +57,11 @@ document.getElementById('submitButton').addEventListener('click', () => {
     } else {
       // Clear the outputDiv and reset the currentSignalIndex
       outputDiv.textContent = ''; // Clear the output div
-      currentSignalIndex = 0; // Reset the signal index
 
       // Create an overlay to display the correct answer
       const overlay = document.createElement('div');
       const correctAnswer = currentSignalArray[currentSignalIndex]; // Store the correct answer
       overlay.textContent = `Incorrect! The correct answer was: ${correctAnswer}`;
-      currentSignalIndex++; // Advance the signal index to the next one
       if (currentSignalIndex >= currentSignalArray.length) {
         currentSignalIndex = 0; // Reset the signal index if it exceeds the array length
       }
@@ -85,6 +83,8 @@ document.getElementById('submitButton').addEventListener('click', () => {
         
       // Add the overlay to the body
       document.body.appendChild(overlay);
+      
+      currentSignalIndex = 0; // Reset the signal index
         
       // Remove the overlay after 2 seconds
       setTimeout(() => {
