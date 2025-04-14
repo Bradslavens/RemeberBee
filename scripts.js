@@ -61,11 +61,15 @@ document.getElementById('submitButton').addEventListener('click', () => {
 
       // Create an overlay to display the correct answer
       const overlay = document.createElement('div');
-      overlay.textContent = `Incorrect! The correct answer was: ${currentSignalArray[currentSignalIndex]}`;
+      const correctAnswer = currentSignalArray[currentSignalIndex]; // Store the correct answer
+      overlay.textContent = `Incorrect! The correct answer was: ${correctAnswer}`;
       currentSignalIndex++; // Advance the signal index to the next one
       if (currentSignalIndex >= currentSignalArray.length) {
         currentSignalIndex = 0; // Reset the signal index if it exceeds the array length
       }
+      // Reset the game after displaying the correct answer
+      outputDiv.textContent = ''; // Clear the output div
+      currentSignalIndex = 0; // Reset the signal index
       overlay.style.position = 'fixed';
       overlay.style.top = '50%';
       overlay.style.left = '50%';
