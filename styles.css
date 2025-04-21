@@ -119,3 +119,8 @@ select, input {
   font-size: 12px;
   color: #ff8a65;
 }
+
+/* Target the CLR hexagon specifically */
+.hexagon.base-signal:nth-child(12) {
+  font-size: 16px; /* Reduce the font size */
+}
