@@ -98,7 +98,7 @@ document.body.appendChild(overlay);
 // Remove the overlay after 2 seconds
 setTimeout(() => {
   document.body.removeChild(overlay);
-}, 6000);
+}, 2000);
       console.log("Incorrect guess or no signals available for the selected line.");
     }
 
