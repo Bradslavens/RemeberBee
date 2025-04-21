@@ -42,6 +42,7 @@ lineSelect.addEventListener('change', () => {
 });
 
 let currentSignalIndex = 0;
+let correctGuesses = signals[lineSelect.value]?.signalList?.length || 0; // Initialize correct guesses to the array length or 0 if unavailable
 
 document.getElementById('submitButton').addEventListener('click', () => {
   const wordInput = document.getElementById('wordInput');
@@ -60,21 +61,48 @@ document.getElementById('submitButton').addEventListener('click', () => {
 
       // Check if we've reached the end of the array
       if (currentSignalIndex >= currentSignalArray.length) {
-        currentSignalIndex = 0; // Reset the signal index
-        console.log("All signals for the selected line have been guessed correctly.");
+        // Display the final score in an overlay
+        const overlay = document.createElement('div');
+        overlay.innerHTML = `GAME OVER!<br>Your Score: ${correctGuesses} / ${currentSignalArray.length}`;
+        
+        // Style the overlay
+        overlay.style.position = 'fixed';
+        overlay.style.top = '50%';
+        overlay.style.left = '50%';
+        overlay.style.transform = 'translate(-50%, -50%)';
+        overlay.style.fontSize = '31.2px';
+        overlay.style.color = 'white';
+        overlay.style.fontWeight = 'bold';
+        overlay.style.zIndex = '1000';
+        overlay.style.backgroundColor = '#4caf50'; // Green background for success
+        overlay.style.padding = '20px';
+        overlay.style.borderRadius = '10px';
+        overlay.style.textAlign = 'center';
+
+        // Add the overlay to the body
+        document.body.appendChild(overlay);
+
+        // Remove the overlay after 5 seconds
+        setTimeout(() => {
+          document.body.removeChild(overlay);
+        }, 5000);
+
+        // Reset the game
+        currentSignalIndex = 0;
+        correctGuesses = 0;
+        outputDiv.textContent = '';
       }
     } else {
       // Create an overlay to display the correct answer
       const overlay = document.createElement('div');
       const correctAnswer = currentSignalArray?.[currentSignalIndex]; // Store the correct answer
-      overlay.innerHTML = `CORRECT ANSWER!<br><span style="font-size: 37.44px;">${correctAnswer}</span>`;
-
+      overlay.innerHTML = `INCORRECT!<br>The correct answer was: <span style="font-size: 37.44px;">${correctAnswer}</span>`;
       // Style the overlay
       overlay.style.position = 'fixed';
       overlay.style.top = '50%';
       overlay.style.left = '50%';
       overlay.style.transform = 'translate(-50%, -50%)';
-      overlay.style.fontSize = '31.2px'; // Increased font size by 30% (24px * 1.3)
+      overlay.style.fontSize = '31.2px';
       overlay.style.color = 'white';
       overlay.style.fontWeight = 'bold';
       overlay.style.zIndex = '1000';
@@ -90,6 +118,8 @@ document.getElementById('submitButton').addEventListener('click', () => {
       setTimeout(() => {
         document.body.removeChild(overlay);
       }, 2000);
+      correctGuesses--; // Increment correct guesses
+      console.log("current score " + correctGuesses);
 
       console.log("Incorrect guess or no signals available for the selected line.");
     }
