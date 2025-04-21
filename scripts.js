@@ -64,8 +64,6 @@ document.getElementById('submitButton').addEventListener('click', () => {
         console.log("All signals for the selected line have been guessed correctly.");
       }
     } else {
-      // Clear the outputDiv and reset the currentSignalIndex
-      
       // Create an overlay to display the correct answer
       const overlay = document.createElement('div');
       const correctAnswer = currentSignalArray?.[currentSignalIndex]; // Store the correct answer
@@ -94,7 +92,9 @@ document.getElementById('submitButton').addEventListener('click', () => {
       }, 2000);
 
       console.log("Incorrect guess or no signals available for the selected line.");
-      wordInput.value = ''; // Clear the input field
     }
+
+    // Clear the input field after submission
+    wordInput.value = '';
   }
 });
