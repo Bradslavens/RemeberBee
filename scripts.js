@@ -2,11 +2,17 @@ import signals from './signals.js';
 import { playClickSound } from './click.js';
 
 document.querySelectorAll('.hexagon').forEach(hexagon => {
-    hexagon.addEventListener('click', () => {
-        const wordInput = document.getElementById('wordInput');
-        playClickSound(); // Play sound when hexagon is clicked
-        wordInput.value += hexagon.textContent;
-    });
+  hexagon.addEventListener('click', () => {
+      const wordInput = document.getElementById('wordInput');
+      playClickSound(); // Play sound when hexagon is clicked
+
+      // Check if the clicked hexagon is the "CLR" button
+      if (hexagon.textContent.trim() === 'CLR') {
+          wordInput.value = ''; // Clear the input field
+      } else {
+          wordInput.value += hexagon.textContent; // Append the hexagon's text content
+      }
+  });
 });
 
 const lineSelect = document.getElementById('lineSelect');
