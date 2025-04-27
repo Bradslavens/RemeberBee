@@ -128,3 +128,40 @@ select, input {
 .hexagon.base-signal:nth-child(12) {
   font-size: 0.9rem; /* Slightly smaller font size */
 }
+
+#wordInputContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between the squares */
+  margin: 20px 0;
+}
+
+.square-input {
+  background: #ffffff; /* White background */
+  color: #000000; /* Black text for contrast */
+  border: 2px solid #555555;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%; /* Default width */
+  max-width: 60px; /* Maximum width for square shape */
+  aspect-ratio: 1; /* Ensures the input is a square */
+  padding: 0;
+}
+
+.square-input:focus {
+  outline: 2px solid #90caf9; /* Light blue outline on focus */
+}
+
+@media (max-width: 768px) {
+  .square-input {
+    max-width: 50px; /* Adjust size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .square-input {
+    max-width: 40px; /* Further adjust size for very small screens */
+  }
+}
