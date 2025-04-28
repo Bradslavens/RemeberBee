@@ -70,13 +70,16 @@ function checkAndSubmit() {
     document.getElementById('result').textContent = "Correct! 🎉";
     document.getElementById('result').style.color = "green";
 
-    // Move to the next signal
-    currentSignalIndex++;
-    if (currentSignalIndex >= signalList.length) {
-      currentSignalIndex = 0; // Reset to the first signal if at the end
-      currentLevel++; // Increase the level
-    }
-    populateWordBoxes(); // Populate the next signal
+    // Show the guess for 1 second before moving to the next signal
+    setTimeout(() => {
+      currentSignalIndex++;
+      if (currentSignalIndex >= signalList.length) {
+        currentSignalIndex = 0; // Reset to the first signal if at the end
+        currentLevel++; // Increase the level
+      }
+      populateWordBoxes(); // Populate the next signal
+      document.getElementById('result').textContent = ""; // Clear the result message
+    }, 1000); // 1 second delay
   } else {
     // Show the correct answer in the overlay
     const overlay = document.getElementById('overlay');
