@@ -10,42 +10,47 @@ Object.keys(signals).forEach(line => {
   lineSelect.appendChild(option);
 });
 
+// Variables to track the current line, signal, and level
+let currentLine = null;
+let currentSignalIndex = 0;
+let currentLevel = 1; // Start at level 1
+
 // Add an event listener to handle line selection
 lineSelect.addEventListener('change', () => {
-  const selectedLine = lineSelect.value;
-  console.log(`Selected Line: ${selectedLine}`);
-  // You can add additional logic here to update the game based on the selected line
+  currentLine = lineSelect.value;
+  currentSignalIndex = 0; // Reset to the first signal
+  currentLevel = 1; // Reset to level 1
+  populateWordBoxes(); // Populate the word boxes with the first signal
 });
-const fullWord = "WATER";   // Full word to guess
-const revealedLetters = 2;  // Number of starting letters shown
 
-const wordContainer = document.getElementById('wordContainer');
+// Function to populate the word boxes with the current signal based on the level
+function populateWordBoxes() {
+  const wordContainer = document.getElementById('wordContainer');
+  wordContainer.innerHTML = ''; // Clear existing boxes
 
-function createBoxes() {
-  // Create squares for the starting letters
-  for (let i = 0; i < revealedLetters; i++) {
-    const box = document.createElement('div');
-    box.className = 'letter-box';
-    box.textContent = fullWord[i];
-    wordContainer.appendChild(box);
-  }
+  if (!currentLine) return;
 
-  // Create input boxes for the missing letters
-  for (let i = revealedLetters; i < fullWord.length; i++) {
+  const signalList = signals[currentLine].signalList;
+  const currentSignal = signalList[currentSignalIndex];
+
+  // Create boxes for the signal
+  for (let i = 0; i < currentSignal.length; i++) {
     const input = document.createElement('input');
     input.type = 'text';
     input.maxLength = 1;
     input.className = 'input-box';
+
+    // Populate the first character and the rest based on the level
+    if (i === 0 || i < currentSignal.length - currentLevel) {
+      input.value = currentSignal[i]; // Pre-fill the box
+      input.disabled = true; // Make it read-only
+    }
+
     wordContainer.appendChild(input);
   }
 }
 
-createBoxes();
-
-
-
-const keypadButtons = document.querySelectorAll('.keypad-button');
-// Function to check if all input boxes are filled and submit the guess
+// Function to check the guess and handle the game logic
 function checkAndSubmit() {
   const inputs = document.querySelectorAll('.input-box');
   let userInput = "";
@@ -58,20 +63,34 @@ function checkAndSubmit() {
     userInput += input.value.toUpperCase();
   }
 
-  // Combine revealed letters with user input
-  const fullAttempt = fullWord.substring(0, revealedLetters) + userInput;
+  const signalList = signals[currentLine].signalList;
+  const currentSignal = signalList[currentSignalIndex];
 
   // Check if the guess is correct
-  if (fullAttempt === fullWord) {
+  if (userInput === currentSignal) {
     document.getElementById('result').textContent = "Correct! 🎉";
     document.getElementById('result').style.color = "green";
+
+    // Move to the next signal
+    currentSignalIndex++;
+    if (currentSignalIndex >= signalList.length) {
+      currentSignalIndex = 0; // Reset to the first signal if at the end
+      currentLevel++; // Increase the level
+    }
+    populateWordBoxes(); // Populate the next signal
   } else {
-    document.getElementById('result').textContent = "Try Again!";
+    document.getElementById('result').textContent = "Wrong! Resetting...";
     document.getElementById('result').style.color = "red";
+
+    // Reset to the first signal and level
+    currentSignalIndex = 0;
+    currentLevel = 1;
+    populateWordBoxes();
   }
 }
 
 // Keypad button logic
+const keypadButtons = document.querySelectorAll('.keypad-button');
 keypadButtons.forEach(button => {
   button.addEventListener('click', () => {
     const value = button.textContent;
