@@ -13,13 +13,21 @@ Object.keys(signals).forEach(line => {
 // Variables to track the current line, signal, and level
 let currentLine = null;
 let currentSignalIndex = 0;
-let currentLevel = 1; // Start at level 1
+let currentLevel = 1; // Default to level 1
+
+// Add an event listener to handle level selection
+const levelSelect = document.getElementById('levelSelect');
+levelSelect.addEventListener('change', () => {
+  currentLevel = parseInt(levelSelect.value, 10); // Update the level based on user selection
+  if (currentLine) {
+    populateWordBoxes(); // Re-populate the word boxes with the new level
+  }
+});
 
 // Add an event listener to handle line selection
 lineSelect.addEventListener('change', () => {
   currentLine = lineSelect.value;
   currentSignalIndex = 0; // Reset to the first signal
-  currentLevel = 1; // Reset to level 1
   populateWordBoxes(); // Populate the word boxes with the first signal
 });
 
@@ -91,8 +99,7 @@ function checkAndSubmit() {
     setTimeout(() => {
       overlay.style.display = 'none'; // Hide the overlay
       currentSignalIndex = 0; // Reset to the first signal
-      currentLevel = 1; // Reset to level 1
-      populateWordBoxes(); // Reset the word boxes
+      populateWordBoxes(); // Reset the word boxes, but keep the current level
       document.getElementById('result').textContent = ""; // Clear the result message
     }, 1000); // 1 second delay
   }
