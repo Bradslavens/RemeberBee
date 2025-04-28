@@ -111,9 +111,13 @@ keypadButtons.forEach(button => {
     const value = button.textContent;
 
     if (value === 'Clear') {
-      // Clear all input boxes
+      // Clear only the user input in the input boxes
       const inputs = document.querySelectorAll('.input-box');
-      inputs.forEach(input => (input.value = ''));
+      inputs.forEach(input => {
+      if (!input.disabled) {
+        input.value = ''; // Clear only editable boxes
+      }
+      });
       document.getElementById('result').textContent = ""; // Clear result message
     } else {
       // Find the first empty input box and add the value

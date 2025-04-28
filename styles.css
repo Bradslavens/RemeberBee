@@ -1,49 +1,41 @@
+/* General body styling */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Press Start 2P', monospace; /* Retro pixelated font */
   text-align: center;
-  padding: 30px;
+  padding: 20px;
+  background-color: #001f3f; /* Dark blue background */
+  color: #ff4136; /* Bright red text for retro look */
+  margin: 0;
 }
 
+/* Word container styling */
 .word-container {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-}
-
-.letter-box {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #333;
-  margin: 5px;
-  font-size: 24px;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .input-box {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   margin: 5px;
   font-size: 24px;
   text-align: center;
   text-transform: uppercase;
+  border: 2px solid #0074d9; /* Bright blue border */
+  background-color: #001f3f; /* Dark blue background */
+  color: #ff4136; /* Bright red text */
+  box-shadow: 0 0 10px #0074d9; /* Blue glow effect */
+  text-shadow: 0 0 5px #ff4136; /* Red glow effect */
 }
 
-#submitBtn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
+.input-box:disabled {
+  background-color: #003366; /* Darker blue for disabled boxes */
+  color: #555; /* Dimmed text for disabled boxes */
 }
 
-#result {
-  margin-top: 20px;
-  font-size: 24px;
-  font-weight: bold;
-}
-
+/* Keypad container styling */
 .keypad-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -53,62 +45,123 @@ body {
 }
 
 .keypad-button {
-  background-color: #f0f0f0;
-  border: 2px solid #333;
-  border-radius: 5px;
-  font-size: 18px;
+  background-color: #0074d9; /* Bright blue background */
+  border: 2px solid #ff4136; /* Bright red border */
+  font-size: 24px; /* Larger font size for better visibility */
   padding: 15px;
   text-align: center;
+  color: #fff; /* White text for contrast */
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: transform 0.2s, background-color 0.3s;
+  text-shadow: 0 0 5px #fff; /* White glow effect for numbers */
+  box-shadow: 0 0 10px #0074d9; /* Blue glow effect */
 }
 
 .keypad-button:hover {
-  background-color: #ddd;
+  background-color: #005bb5; /* Slightly darker blue on hover */
 }
 
 .keypad-button:active {
-  background-color: #ccc;
+  transform: scale(0.95);
+  background-color: #003f7f; /* Even darker blue on active */
 }
 
-.line-selection-container {
+#clearButton {
+  background-color: #ff4136; /* Bright red for the clear button */
+  color: #fff; /* White text */
+  border: 2px solid #ff4136; /* Red border */
+  text-shadow: 0 0 5px #fff; /* White glow effect */
+}
+
+#clearButton:hover {
+  background-color: #e62e2e; /* Darker red on hover */
+}
+
+#clearButton:active {
+  transform: scale(0.95);
+  background-color: #cc0000; /* Even darker red */
+}
+
+/* Line and level selection styling */
+.line-selection-container,
+.level-selection-container {
   text-align: center;
   margin-bottom: 20px;
 }
 
-#lineSelect {
+#lineSelect,
+#levelSelect {
   font-size: 16px;
-  padding: 5px;
-  border: 2px solid #333;
-  border-radius: 5px;
+  padding: 10px;
+  border: 2px solid #0074d9; /* Bright blue border */
+  border-radius: 0; /* No rounded corners for retro look */
+  background-color: #001f3f; /* Dark blue background */
+  color: #ff4136; /* Bright red text */
+  text-shadow: 0 0 5px #ff4136; /* Red glow effect */
 }
+
+#lineSelect:hover,
+#levelSelect:hover {
+  background-color: #003366; /* Slightly lighter blue background */
+}
+
+#lineSelect:focus,
+#levelSelect:focus {
+  outline: none;
+  border-color: #ff4136; /* Red border on focus */
+}
+
+/* Result styling */
+#result {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff4136; /* Bright red text */
+  text-shadow: 0 0 5px #ff4136; /* Red glow effect */
+}
+
+/* Overlay styling */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-  display: none; /* Hidden by default */
+  background-color: rgba(0, 0, 0, 0.9); /* Almost black background */
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
 .overlay-content {
-  color: white;
-  font-size: 24px;
+  color: #ff4136; /* Bright red text */
+  font-size: 28px;
   text-align: center;
+  background-color: #001f3f; /* Dark blue background */
+  padding: 20px;
+  border: 2px solid #0074d9; /* Bright blue border */
+  text-shadow: 0 0 5px #ff4136; /* Red glow effect */
 }
 
-.level-selection-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .input-box {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
 
-#levelSelect {
-  font-size: 16px;
-  padding: 5px;
-  border: 2px solid #333;
-  border-radius: 5px;
+  .keypad-button {
+    font-size: 20px; /* Slightly smaller font for mobile */
+    padding: 12px;
+  }
+
+  #result {
+    font-size: 20px;
+  }
+
+  .overlay-content {
+    font-size: 24px;
+  }
 }
