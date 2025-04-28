@@ -70,3 +70,15 @@ body {
 .keypad-button:active {
   background-color: #ccc;
 }
+
+.line-selection-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#lineSelect {
+  font-size: 16px;
+  padding: 5px;
+  border: 2px solid #333;
+  border-radius: 5px;
+}
