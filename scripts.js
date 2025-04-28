@@ -35,12 +35,11 @@ document.getElementById('submitBtn').addEventListener('click', function() {
 
   const fullAttempt = fullWord.substring(0, revealedLetters) + userInput;
 
-  const resultElement = document.getElementById('result');
   if (fullAttempt === fullWord) {
-    resultElement.textContent = "Correct! 🎉";
-    resultElement.style.color = "green";
+    document.getElementById('result').textContent = "Correct! 🎉";
+    document.getElementById('result').style.color = "green";
   } else {
-    resultElement.textContent = "Try Again!";
-    resultElement.style.color = "red";
+    document.getElementById('result').textContent = "Try Again!";
+    document.getElementById('result').style.color = "red";
   }
 });
