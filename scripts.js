@@ -87,7 +87,7 @@ function checkAndSubmit() {
       }
       populateWordBoxes(); // Populate the next signal
       document.getElementById('result').textContent = ""; // Clear the result message
-    }, 1000); // 1 second delay
+    }, 250); // 1 second delay
   } else {
     // Show the correct answer in the overlay
     const overlay = document.getElementById('overlay');
@@ -101,7 +101,7 @@ function checkAndSubmit() {
       currentSignalIndex = 0; // Reset to the first signal
       populateWordBoxes(); // Reset the word boxes, but keep the current level
       document.getElementById('result').textContent = ""; // Clear the result message
-    }, 1000); // 1 second delay
+    }, 1750); // 1 second delay
   }
 }
 // Keypad button logic
