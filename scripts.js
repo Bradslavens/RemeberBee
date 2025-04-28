@@ -43,3 +43,26 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     document.getElementById('result').style.color = "red";
   }
 });
+
+const keypadButtons = document.querySelectorAll('.keypad-button');
+
+keypadButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const value = button.textContent;
+
+    if (value === 'Clear') {
+      // Clear all input boxes
+      const inputs = document.querySelectorAll('.input-box');
+      inputs.forEach(input => (input.value = ''));
+    } else {
+      // Find the first empty input box and add the value
+      const inputs = document.querySelectorAll('.input-box');
+      for (let input of inputs) {
+        if (input.value === '') {
+          input.value = value; // Add the value to the first empty box
+          break; // Stop after filling the first empty box
+        }
+      }
+    }
+  });
+});
