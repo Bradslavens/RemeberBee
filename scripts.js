@@ -50,7 +50,6 @@ function populateWordBoxes() {
   }
 }
 
-// Function to check the guess and handle the game logic
 function checkAndSubmit() {
   const inputs = document.querySelectorAll('.input-box');
   let userInput = "";
@@ -79,16 +78,22 @@ function checkAndSubmit() {
     }
     populateWordBoxes(); // Populate the next signal
   } else {
-    document.getElementById('result').textContent = "Wrong! Resetting...";
-    document.getElementById('result').style.color = "red";
+    // Show the correct answer in the overlay
+    const overlay = document.getElementById('overlay');
+    const overlayContent = document.getElementById('overlayContent');
+    overlayContent.textContent = `Correct Answer: ${currentSignal}`;
+    overlay.style.display = 'flex'; // Show the overlay
 
-    // Reset to the first signal and level
-    currentSignalIndex = 0;
-    currentLevel = 1;
-    populateWordBoxes();
+    // Hide the overlay and reset the game after 1 second
+    setTimeout(() => {
+      overlay.style.display = 'none'; // Hide the overlay
+      currentSignalIndex = 0; // Reset to the first signal
+      currentLevel = 1; // Reset to level 1
+      populateWordBoxes(); // Reset the word boxes
+      document.getElementById('result').textContent = ""; // Clear the result message
+    }, 1000); // 1 second delay
   }
 }
-
 // Keypad button logic
 const keypadButtons = document.querySelectorAll('.keypad-button');
 keypadButtons.forEach(button => {
