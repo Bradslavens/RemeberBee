@@ -25,16 +25,26 @@ function createBoxes() {
 
 createBoxes();
 
-document.getElementById('submitBtn').addEventListener('click', function() {
+
+
+const keypadButtons = document.querySelectorAll('.keypad-button');
+// Function to check if all input boxes are filled and submit the guess
+function checkAndSubmit() {
   const inputs = document.querySelectorAll('.input-box');
   let userInput = "";
 
-  inputs.forEach(input => {
+  // Check if all input boxes are filled
+  for (let input of inputs) {
+    if (input.value === "") {
+      return; // Exit if any box is empty
+    }
     userInput += input.value.toUpperCase();
-  });
+  }
 
+  // Combine revealed letters with user input
   const fullAttempt = fullWord.substring(0, revealedLetters) + userInput;
 
+  // Check if the guess is correct
   if (fullAttempt === fullWord) {
     document.getElementById('result').textContent = "Correct! 🎉";
     document.getElementById('result').style.color = "green";
@@ -42,10 +52,9 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     document.getElementById('result').textContent = "Try Again!";
     document.getElementById('result').style.color = "red";
   }
-});
+}
 
-const keypadButtons = document.querySelectorAll('.keypad-button');
-
+// Keypad button logic
 keypadButtons.forEach(button => {
   button.addEventListener('click', () => {
     const value = button.textContent;
@@ -54,15 +63,19 @@ keypadButtons.forEach(button => {
       // Clear all input boxes
       const inputs = document.querySelectorAll('.input-box');
       inputs.forEach(input => (input.value = ''));
+      document.getElementById('result').textContent = ""; // Clear result message
     } else {
       // Find the first empty input box and add the value
       const inputs = document.querySelectorAll('.input-box');
       for (let input of inputs) {
-        if (input.value === '') {
+        if (input.value === "") {
           input.value = value; // Add the value to the first empty box
           break; // Stop after filling the first empty box
         }
       }
+
+      // Check if all boxes are filled and submit the guess
+      checkAndSubmit();
     }
   });
 });
