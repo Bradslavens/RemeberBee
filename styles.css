@@ -1,219 +1,141 @@
-/* General body styling */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik+Mono+One&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Arial', sans-serif;
-  text-align: center;
-  padding: 20px;
-  background: linear-gradient(to bottom, #1e3c72, #2a5298); /* Railroad-inspired gradient */
-  color: #fff;
   margin: 0;
-}
-
-/* Heading styling */
-h1 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* Word container styling */
-.word-container {
+  padding: 0;
+  font-family: 'Rubik Mono One', sans-serif;
+  background: url('backGroundImage.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-shadow: 1px 1px 3px #000;
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  min-height: 100vh;
 }
 
-.input-box {
-  width: 50px;
-  height: 50px;
-  margin: 5px;
-  font-size: 24px;
+h1 {
+  margin: 20px 0;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
   text-align: center;
-  text-transform: uppercase;
-  border: 2px solid #ffcc00; /* Yellow border for railroad theme */
-  border-radius: 5px;
-  background-color: #fff;
-  color: #333;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  color: #ffd700;
+  text-shadow: 2px 2px 5px #000;
 }
 
+.level-selection-container,
+.line-selection-container {
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
 
-/* Keypad container styling */
+select {
+  font-size: 1rem;
+  padding: 5px;
+  border-radius: 5px;
+  background: #111;
+  color: #fff;
+  border: 2px solid #ffd700;
+}
+
+.word-container {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 3px solid #ff4040;
+  border-radius: 10px;
+  min-height: 60px;
+  text-align: center;
+}
+
 .keypad-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
   gap: 10px;
-  max-width: 300px;
-  margin: 20px auto;
+  margin: 20px;
+  width: 90%;
+  max-width: 500px;
 }
 
 .keypad-button {
-  background-color: #0074d9; /* Bright blue for buttons */
-  border: none;
-  border-radius: 5px;
-  font-size: 20px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
   padding: 15px;
-  text-align: center;
+  background-color: #222;
   color: #fff;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ff4040;
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
 
 .keypad-button:hover {
-  background-color: #005bb5; /* Darker blue on hover */
-}
-
-.keypad-button:active {
-  transform: scale(0.95);
-  background-color: #003f7f; /* Even darker blue on active */
+  background-color: #ff4040;
+  color: #000;
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 #clearButton {
-  background-color: #ff4136; /* Bright red for the clear button */
-  color: #fff;
+  grid-column: span 2;
+  background-color: #ffd700;
+  color: #000;
+  border-color: #fff;
 }
 
 #clearButton:hover {
-  background-color: #e62e2e; /* Darker red on hover */
+  background-color: #fff;
+  color: #000;
+  transform: scale(1.05);
 }
 
-#clearButton:active {
-  transform: scale(0.95);
-  background-color: #cc0000; /* Even darker red */
-}
-
-/* Line and level selection styling */
-.line-selection-container,
-.level-selection-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-#lineSelect,
-#levelSelect {
-  font-size: 16px;
-  padding: 10px;
-  border: 2px solid #ffcc00; /* Yellow border */
-  border-radius: 5px;
-  background-color: #0074d9; /* Bright blue background */
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-#lineSelect:hover,
-#levelSelect:hover {
-  background-color: #005bb5; /* Darker blue on hover */
-}
-
-#lineSelect:focus,
-#levelSelect:focus {
-  outline: none;
-  border-color: #ff4136; /* Red border on focus */
-}
-
-/* Result styling */
 #result {
-  margin-top: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #ffcc00; /* Yellow text for results */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1.3rem;
+  margin: 20px;
+  color: #00ffcc;
 }
 
-/* Overlay styling */
 .overlay {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-  display: none;
+  background-color: rgba(0, 0, 0, 0.85);
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
 .overlay-content {
-  color: #ffcc00; /* Yellow text */
-  font-size: 28px;
-  text-align: center;
-  background-color: #0074d9; /* Bright blue background */
-  padding: 20px;
+  background-color: #111;
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Level overlay styling */
-#levelOverlay {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-color: rgba(0, 0, 0, 0.9); /* Almost black background */
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1001;
-}
-
-#levelOverlayContent {
-  color: #ffcc00; /* Yellow text */
-  font-size: 20px;
   text-align: center;
-  background-color: #0074d9; /* Bright blue background */
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 1.2rem;
 }
 
-/* Mobile-specific adjustments */
+/* Responsive Tweaks */
 @media (max-width: 600px) {
-  .input-box {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
+  h1 {
+    font-size: 1.2rem;
   }
 
   .keypad-button {
-    font-size: 18px;
-    padding: 12px;
+    font-size: 0.75rem;
+    padding: 10px;
   }
 
-  #result {
-    font-size: 20px;
+  .word-container {
+    font-size: 1.2rem;
   }
-
-  .overlay-content {
-    font-size: 20px;
-  }
-
-  #levelOverlayContent {
-    font-size: 18px;
-  }
-}
-
-#levelOverlay {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-color: rgba(0, 0, 0, 0.9); /* Almost black background */
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1001;
-}
-
-#levelOverlayContent {
-  color: #ffcc00; /* Yellow text */
-  font-size: 20px;
-  text-align: center;
-  background-color: #0074d9; /* Bright blue background */
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
