@@ -83,19 +83,19 @@ function checkAndSubmit() {
       currentSignalIndex++;
       if (currentSignalIndex >= signalList.length) {
         currentSignalIndex = 0; // Reset to the first signal if at the end
-        currentLevel++; // Increase the level
 
-        // Show the level overlay
+        // Show the "Level Complete" overlay
         const levelOverlay = document.getElementById('levelOverlay');
         const levelOverlayContent = document.getElementById('levelOverlayContent');
-        levelOverlayContent.textContent = `Level ${currentLevel}`;
+        levelOverlayContent.textContent = `Congratulations! Level ${currentLevel} Complete!`;
         levelOverlay.style.display = 'flex';
 
-        // Hide the level overlay after 1500 ms
+        // Hide the overlay and move to the next level after 1 second
         setTimeout(() => {
           levelOverlay.style.display = 'none';
+          currentLevel++; // Increase the level
           populateWordBoxes(); // Populate the next signal
-        }, 1500);
+        }, 1000);
       } else {
         populateWordBoxes(); // Populate the next signal
       }

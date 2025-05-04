@@ -199,3 +199,26 @@ h1 {
     font-size: 18px;
   }
 }
+
+#levelOverlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.9); /* Almost black background */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+#levelOverlayContent {
+  color: #ffcc00; /* Yellow text */
+  font-size: 20px;
+  text-align: center;
+  background-color: #0074d9; /* Bright blue background */
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
