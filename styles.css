@@ -1,11 +1,18 @@
 /* General body styling */
 body {
-  font-family: 'Press Start 2P', monospace; /* Retro pixelated font */
+  font-family: 'Arial', sans-serif;
   text-align: center;
   padding: 20px;
-  background-color: #001f3f; /* Dark blue background */
-  color: #ff4136; /* Bright red text for retro look */
+  background: linear-gradient(to bottom, #1e3c72, #2a5298); /* Railroad-inspired gradient */
+  color: #fff;
   margin: 0;
+}
+
+/* Heading styling */
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Word container styling */
@@ -23,16 +30,17 @@ body {
   font-size: 24px;
   text-align: center;
   text-transform: uppercase;
-  border: 2px solid #0074d9; /* Bright blue border */
-  background-color: #001f3f; /* Dark blue background */
-  color: #ff4136; /* Bright red text */
-  box-shadow: 0 0 10px #0074d9; /* Blue glow effect */
-  text-shadow: 0 0 5px #ff4136; /* Red glow effect */
+  border: 2px solid #ffcc00; /* Yellow border for railroad theme */
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .input-box:disabled {
-  background-color: #003366; /* Darker blue for disabled boxes */
-  color: #555; /* Dimmed text for disabled boxes */
+  background-color: #ffcc00; /* Yellow for prefilled boxes */
+  color: #fff;
+  font-weight: bold;
 }
 
 /* Keypad container styling */
@@ -45,20 +53,20 @@ body {
 }
 
 .keypad-button {
-  background-color: #0074d9; /* Bright blue background */
-  border: 2px solid #ff4136; /* Bright red border */
-  font-size: 24px; /* Larger font size for better visibility */
+  background-color: #0074d9; /* Bright blue for buttons */
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
   padding: 15px;
   text-align: center;
-  color: #fff; /* White text for contrast */
+  color: #fff;
   cursor: pointer;
   transition: transform 0.2s, background-color 0.3s;
-  text-shadow: 0 0 5px #fff; /* White glow effect for numbers */
-  box-shadow: 0 0 10px #0074d9; /* Blue glow effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .keypad-button:hover {
-  background-color: #005bb5; /* Slightly darker blue on hover */
+  background-color: #005bb5; /* Darker blue on hover */
 }
 
 .keypad-button:active {
@@ -68,9 +76,7 @@ body {
 
 #clearButton {
   background-color: #ff4136; /* Bright red for the clear button */
-  color: #fff; /* White text */
-  border: 2px solid #ff4136; /* Red border */
-  text-shadow: 0 0 5px #fff; /* White glow effect */
+  color: #fff;
 }
 
 #clearButton:hover {
@@ -93,16 +99,16 @@ body {
 #levelSelect {
   font-size: 16px;
   padding: 10px;
-  border: 2px solid #0074d9; /* Bright blue border */
-  border-radius: 0; /* No rounded corners for retro look */
-  background-color: #001f3f; /* Dark blue background */
-  color: #ff4136; /* Bright red text */
-  text-shadow: 0 0 5px #ff4136; /* Red glow effect */
+  border: 2px solid #ffcc00; /* Yellow border */
+  border-radius: 5px;
+  background-color: #0074d9; /* Bright blue background */
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 #lineSelect:hover,
 #levelSelect:hover {
-  background-color: #003366; /* Slightly lighter blue background */
+  background-color: #005bb5; /* Darker blue on hover */
 }
 
 #lineSelect:focus,
@@ -116,8 +122,8 @@ body {
   margin-top: 20px;
   font-size: 24px;
   font-weight: bold;
-  color: #ff4136; /* Bright red text */
-  text-shadow: 0 0 5px #ff4136; /* Red glow effect */
+  color: #ffcc00; /* Yellow text for results */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Overlay styling */
@@ -127,7 +133,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9); /* Almost black background */
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
   display: none;
   justify-content: center;
   align-items: center;
@@ -135,25 +141,49 @@ body {
 }
 
 .overlay-content {
-  color: #ff4136; /* Bright red text */
+  color: #ffcc00; /* Yellow text */
   font-size: 28px;
   text-align: center;
-  background-color: #001f3f; /* Dark blue background */
+  background-color: #0074d9; /* Bright blue background */
   padding: 20px;
-  border: 2px solid #0074d9; /* Bright blue border */
-  text-shadow: 0 0 5px #ff4136; /* Red glow effect */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Mobile responsiveness */
+/* Level overlay styling */
+#levelOverlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.9); /* Almost black background */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+#levelOverlayContent {
+  color: #ffcc00; /* Yellow text */
+  font-size: 20px;
+  text-align: center;
+  background-color: #0074d9; /* Bright blue background */
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile-specific adjustments */
 @media (max-width: 600px) {
   .input-box {
     width: 40px;
     height: 40px;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .keypad-button {
-    font-size: 20px; /* Slightly smaller font for mobile */
+    font-size: 18px;
     padding: 12px;
   }
 
@@ -162,6 +192,10 @@ body {
   }
 
   .overlay-content {
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  #levelOverlayContent {
+    font-size: 18px;
   }
 }

@@ -84,8 +84,21 @@ function checkAndSubmit() {
       if (currentSignalIndex >= signalList.length) {
         currentSignalIndex = 0; // Reset to the first signal if at the end
         currentLevel++; // Increase the level
+
+        // Show the level overlay
+        const levelOverlay = document.getElementById('levelOverlay');
+        const levelOverlayContent = document.getElementById('levelOverlayContent');
+        levelOverlayContent.textContent = `Level ${currentLevel}`;
+        levelOverlay.style.display = 'flex';
+
+        // Hide the level overlay after 1500 ms
+        setTimeout(() => {
+          levelOverlay.style.display = 'none';
+          populateWordBoxes(); // Populate the next signal
+        }, 1500);
+      } else {
+        populateWordBoxes(); // Populate the next signal
       }
-      populateWordBoxes(); // Populate the next signal
       document.getElementById('result').textContent = ""; // Clear the result message
     }, 250); // 1 second delay
   } else {
