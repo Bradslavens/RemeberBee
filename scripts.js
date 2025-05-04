@@ -17,19 +17,35 @@ let currentLevel = 1; // Default to level 1
 
 // Add an event listener to handle level selection
 const levelSelect = document.getElementById('levelSelect');
+let levelSelected = false;
+let lineSelected = false;
+
+// Handle level selection
 levelSelect.addEventListener('change', () => {
   currentLevel = parseInt(levelSelect.value, 10); // Update the level based on user selection
-  if (currentLine) {
-    populateWordBoxes(); // Re-populate the word boxes with the new level
-  }
+  levelSelected = true;
+  checkSelections(); // Check if both selections are made
 });
 
-// Add an event listener to handle line selection
+// Handle line selection
 lineSelect.addEventListener('change', () => {
   currentLine = lineSelect.value;
   currentSignalIndex = 0; // Reset to the first signal
-  populateWordBoxes(); // Populate the word boxes with the first signal
+  lineSelected = true;
+  checkSelections(); // Check if both selections are made
 });
+
+// Function to check if both level and line are selected
+function checkSelections() {
+  if (levelSelected && lineSelected) {
+    // Hide the level and line selection containers
+    document.querySelector('.level-selection-container').style.display = 'none';
+    document.querySelector('.line-selection-container').style.display = 'none';
+
+    // Populate the word boxes with the first signal
+    populateWordBoxes();
+  }
+}
 
 // Function to populate the word boxes with the current signal based on the level
 function populateWordBoxes() {
@@ -58,6 +74,7 @@ function populateWordBoxes() {
   }
 }
 
+// Function to check the user's guess and handle game logic
 function checkAndSubmit() {
   const inputs = document.querySelectorAll('.input-box');
   let userInput = "";
@@ -117,6 +134,7 @@ function checkAndSubmit() {
     }, 1750); // 1 second delay
   }
 }
+
 // Keypad button logic
 const keypadButtons = document.querySelectorAll('.keypad-button');
 keypadButtons.forEach(button => {
@@ -127,17 +145,17 @@ keypadButtons.forEach(button => {
       // Clear only the user input in the input boxes
       const inputs = document.querySelectorAll('.input-box');
       inputs.forEach(input => {
-      if (!input.disabled) {
-        input.value = ''; // Clear only editable boxes
-      }
+        if (!input.disabled) {
+          input.value = ''; // Clear only editable boxes
+        }
       });
       document.getElementById('result').textContent = ""; // Clear result message
     } else {
       // Find the first empty input box and add the value
       const inputs = document.querySelectorAll('.input-box');
       for (let input of inputs) {
-        if (input.value === "") {
-          input.value = value; // Add the value to the first empty box
+        if (input.value === "" && !input.disabled) {
+          input.value = value; // Add the value to the first empty editable box
           break; // Stop after filling the first empty box
         }
       }
