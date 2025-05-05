@@ -1,21 +1,28 @@
-/* General body styling */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Press Start 2P', Arial, sans-serif;
   text-align: center;
   padding: 20px;
-  background: linear-gradient(to bottom, #1e3c72, #2a5298); /* Railroad-inspired gradient */
+  background-image: 
+    linear-gradient(to bottom, rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)),
+    url('80sbg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #fff;
   margin: 0;
 }
 
-/* Heading styling */
+/* Headings */
 h1 {
-  font-size: 28px;
+  font-size: 24px;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: #ffcc00;
+  text-shadow: 2px 2px 6px #000;
 }
 
-/* Word container styling */
+/* Input field styles */
 .word-container {
   display: flex;
   justify-content: center;
@@ -24,66 +31,67 @@ h1 {
 }
 
 .input-box {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   margin: 5px;
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  border: 2px solid #ffcc00; /* Yellow border for railroad theme */
-  border-radius: 5px;
+  border: 3px solid #ffcc00;
+  border-radius: 8px;
   background-color: #fff;
-  color: #333;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  color: #000;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-
-/* Keypad container styling */
+/* Keypad */
 .keypad-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  max-width: 300px;
+  gap: 12px;
+  max-width: 320px;
   margin: 20px auto;
 }
 
 .keypad-button {
-  background-color: #0074d9; /* Bright blue for buttons */
-  border: none;
-  border-radius: 5px;
-  font-size: 20px;
-  padding: 15px;
-  text-align: center;
-  color: #fff;
+  background-color: #eefe04;
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 18px;
+  color: #000;
   cursor: pointer;
   transition: transform 0.2s, background-color 0.3s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .keypad-button:hover {
-  background-color: #005bb5; /* Darker blue on hover */
+  background-color: #005bb5;
+  color: #fff;
 }
 
 .keypad-button:active {
   transform: scale(0.95);
-  background-color: #003f7f; /* Even darker blue on active */
+  background-color: #003f7f;
 }
 
 #clearButton {
-  background-color: #ff4136; /* Bright red for the clear button */
+  background-color: #ff4136;
   color: #fff;
 }
 
 #clearButton:hover {
-  background-color: #e62e2e; /* Darker red on hover */
+  background-color: #e62e2e;
 }
 
 #clearButton:active {
   transform: scale(0.95);
-  background-color: #cc0000; /* Even darker red */
+  background-color: #cc0000;
 }
 
-/* Line and level selection styling */
+/* Dropdowns */
 .line-selection-container,
 .level-selection-container {
   text-align: center;
@@ -92,43 +100,44 @@ h1 {
 
 #lineSelect,
 #levelSelect {
-  font-size: 16px;
-  padding: 10px;
-  border: 2px solid #ffcc00; /* Yellow border */
-  border-radius: 5px;
-  background-color: #0074d9; /* Bright blue background */
+  font-size: 18px;
+  padding: 12px;
+  border: 3px solid #ffff00;
+  border-radius: 6px;
+  background-color: #0074d9;
   color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 #lineSelect:hover,
 #levelSelect:hover {
-  background-color: #005bb5; /* Darker blue on hover */
+  background-color: #005bb5;
 }
 
 #lineSelect:focus,
 #levelSelect:focus {
   outline: none;
-  border-color: #ff4136; /* Red border on focus */
+  border-color: #ff4136;
 }
 
-/* Result styling */
+/* Result display */
 #result {
   margin-top: 20px;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
-  color: #ffcc00; /* Yellow text for results */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: #ffcc00;
+  text-shadow: 2px 2px 5px #000;
 }
 
-/* Overlay styling */
+/* Overlay for messages */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+  background-color: rgba(0, 0, 0, 0.8);
   display: none;
   justify-content: center;
   align-items: center;
@@ -136,23 +145,23 @@ h1 {
 }
 
 .overlay-content {
-  color: #ffcc00; /* Yellow text */
+  color: #ffcc00;
   font-size: 28px;
   text-align: center;
-  background-color: #0074d9; /* Bright blue background */
-  padding: 20px;
+  background-color: #0074d9;
+  padding: 24px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Level overlay styling */
+/* Level overlay */
 #levelOverlay {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100px;
-  background-color: rgba(0, 0, 0, 0.9); /* Almost black background */
+  background-color: rgba(0, 0, 0, 0.9);
   display: none;
   justify-content: center;
   align-items: center;
@@ -160,60 +169,7 @@ h1 {
 }
 
 #levelOverlayContent {
-  color: #ffcc00; /* Yellow text */
-  font-size: 20px;
+  color: #ffcc00;
+  font-size: 22px;
   text-align: center;
-  background-color: #0074d9; /* Bright blue background */
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Mobile-specific adjustments */
-@media (max-width: 600px) {
-  .input-box {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-
-  .keypad-button {
-    font-size: 18px;
-    padding: 12px;
-  }
-
-  #result {
-    font-size: 20px;
-  }
-
-  .overlay-content {
-    font-size: 20px;
-  }
-
-  #levelOverlayContent {
-    font-size: 18px;
-  }
-}
-
-#levelOverlay {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-color: rgba(0, 0, 0, 0.9); /* Almost black background */
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1001;
-}
-
-#levelOverlayContent {
-  color: #ffcc00; /* Yellow text */
-  font-size: 20px;
-  text-align: center;
-  background-color: #0074d9; /* Bright blue background */
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
+  background-color: #0
