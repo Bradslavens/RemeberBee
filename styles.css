@@ -52,6 +52,15 @@ h1 {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
+input:disabled {
+  background-color: #fff;  /* Normal background */
+  color: #000;             /* Normal text color */
+  opacity: 1;              /* Remove gray/faded look */
+  cursor: not-allowed;     /* Optional: indicate it’s not clickable */
+  border: 1px solid #ccc;  /* Optional: custom border */
+}
+
+
 
 /* Keypad */
 .keypad-container {
