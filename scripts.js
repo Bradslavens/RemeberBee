@@ -165,3 +165,9 @@ keypadButtons.forEach(button => {
     }
   });
 });
+
+// Add event listener for the "Back" button
+const backButton = document.getElementById('backButton');
+backButton.addEventListener('click', () => {
+  window.location.href = 'index.html'; // Redirect to the index.html page
+});
