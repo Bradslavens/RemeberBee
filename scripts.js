@@ -104,7 +104,7 @@ function checkAndSubmit() {
         // Show the "Level Complete" overlay
         const levelOverlay = document.getElementById('levelOverlay');
         const levelOverlayContent = document.getElementById('levelOverlayContent');
-        levelOverlayContent.textContent = `Congratulations! Level ${currentLevel} Complete!`;
+        levelOverlayContent.textContent = `Congratulations! Level ${currentLevel} Complete! Starting Next Level...`;
         levelOverlay.style.display = 'flex';
 
         // Hide the overlay and move to the next level after 1 second
@@ -112,7 +112,7 @@ function checkAndSubmit() {
           levelOverlay.style.display = 'none';
           currentLevel++; // Increase the level
           populateWordBoxes(); // Populate the next signal
-        }, 1000);
+        }, 2500);
       } else {
         populateWordBoxes(); // Populate the next signal
       }
