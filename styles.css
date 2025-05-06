@@ -73,9 +73,9 @@ input:disabled {
   background-color: #eefe04;
   border: 2px solid #000;
   border-radius: 8px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
-  padding: 18px;
+  padding: .5em 0;
   color: #000;
   cursor: pointer;
   transition: transform 0.2s, background-color 0.3s;
@@ -85,11 +85,6 @@ input:disabled {
 .keypad-button:hover {
   background-color: #005bb5;
   color: #fff;
-}
-
-.keypad-button:active {
-  transform: scale(0.95);
-  background-color: #003f7f;
 }
 
 #clearButton {
