@@ -18,29 +18,8 @@ lineSelect.addEventListener('change', () => {
   currentLine = lineSelect.value;
   currentSignalIndex = 0; // Reset to the first signal
   document.querySelector('.line-selection-container').style.display = 'none'; // Hide the line selection
-  populateWordBoxes(); // Populate the word boxes with the first signal
   populateKeypad(); // Populate the keypad with characters
 });
-
-// Function to populate the word boxes with the current signal
-function populateWordBoxes() {
-  const wordContainer = document.getElementById('wordContainer');
-  wordContainer.innerHTML = ''; // Clear existing boxes
-
-  if (!currentLine) return;
-
-  const signalList = signals[currentLine].signalList;
-  const currentSignal = signalList[currentSignalIndex];
-
-  // Create boxes for the signal
-  for (let i = 0; i < currentSignal.length; i++) {
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.maxLength = 1;
-    input.className = 'input-box';
-    wordContainer.appendChild(input);
-  }
-}
 
 // Function to populate the keypad with signal characters and random characters
 function populateKeypad() {
@@ -74,10 +53,7 @@ function populateKeypad() {
     button.textContent = char;
     button.addEventListener('click', () => {
       // Handle button click (e.g., populate input boxes)
-      const emptyInput = document.querySelector('.input-box:not([value])');
-      if (emptyInput) {
-        emptyInput.value = char;
-      }
+      console.log(`Button clicked: ${char}`);
     });
     keypadContainer.appendChild(button);
   });
@@ -85,47 +61,7 @@ function populateKeypad() {
 
 // Function to check the user's guess and handle game logic
 function checkAndSubmit() {
-  const inputs = document.querySelectorAll('.input-box');
-  let userInput = "";
-
-  // Check if all input boxes are filled
-  for (let input of inputs) {
-    if (input.value === "") {
-      return; // Exit if any box is empty
-    }
-    userInput += input.value.toUpperCase();
-  }
-
-  const signalList = signals[currentLine].signalList;
-  const currentSignal = signalList[currentSignalIndex];
-
-  // Check if the guess is correct
-  if (userInput === currentSignal) {
-    document.getElementById('result').textContent = "Correct! 🎉";
-    document.getElementById('result').style.color = "green";
-
-    // Move to the next signal
-    setTimeout(() => {
-      currentSignalIndex++;
-      if (currentSignalIndex >= signalList.length) {
-        currentSignalIndex = 0; // Reset to the first signal if at the end
-      }
-      populateWordBoxes(); // Populate the next signal
-      populateKeypad(); // Update the keypad for the next signal
-      document.getElementById('result').textContent = ""; // Clear the result message
-    }, 1000);
-  } else {
-    // Show the correct answer in the overlay
-    const overlay = document.getElementById('overlay');
-    const overlayContent = document.getElementById('overlayContent');
-    overlayContent.textContent = `Correct Answer: ${currentSignal}`;
-    overlay.style.display = 'flex'; // Show the overlay
-
-    // Hide the overlay after 1.75 seconds
-    setTimeout(() => {
-      overlay.style.display = 'none';
-    }, 1750);
-  }
+  console.log("Check and submit logic here...");
 }
 
 // Add event listener for the "Back" button
