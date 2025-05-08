@@ -19,6 +19,7 @@ lineSelect.addEventListener('change', () => {
   currentSignalIndex = 0; // Reset to the first signal
   document.querySelector('.line-selection-container').style.display = 'none'; // Hide the line selection
   populateWordBoxes(); // Populate the word boxes with the first signal
+  populateKeypad(); // Populate the keypad with characters
 });
 
 // Function to populate the word boxes with the current signal
@@ -39,6 +40,47 @@ function populateWordBoxes() {
     input.className = 'input-box';
     wordContainer.appendChild(input);
   }
+}
+
+// Function to populate the keypad with signal characters and random characters
+function populateKeypad() {
+  const keypadContainer = document.getElementById('keypadContainer');
+  keypadContainer.innerHTML = ''; // Clear existing buttons
+
+  if (!currentLine) return;
+
+  const signalList = signals[currentLine].signalList;
+  const currentSignal = signalList[currentSignalIndex];
+  const signalChars = Array.from(new Set(currentSignal.split(''))); // Unique characters in the signal
+  const allChars = 'ABCRLSOME0123456789'; // Pool of random characters
+  const randomChars = Array.from(allChars).filter(char => !signalChars.includes(char)); // Exclude signal chars
+
+  // Shuffle function
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  // Combine signal characters and random characters
+  const keypadChars = shuffle([...signalChars, ...randomChars.slice(0, 9 - signalChars.length)]);
+
+  // Create buttons for the keypad
+  keypadChars.forEach(char => {
+    const button = document.createElement('button');
+    button.className = 'keypad-button';
+    button.textContent = char;
+    button.addEventListener('click', () => {
+      // Handle button click (e.g., populate input boxes)
+      const emptyInput = document.querySelector('.input-box:not([value])');
+      if (emptyInput) {
+        emptyInput.value = char;
+      }
+    });
+    keypadContainer.appendChild(button);
+  });
 }
 
 // Function to check the user's guess and handle game logic
@@ -69,6 +111,7 @@ function checkAndSubmit() {
         currentSignalIndex = 0; // Reset to the first signal if at the end
       }
       populateWordBoxes(); // Populate the next signal
+      populateKeypad(); // Update the keypad for the next signal
       document.getElementById('result').textContent = ""; // Clear the result message
     }, 1000);
   } else {
