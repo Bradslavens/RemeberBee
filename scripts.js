@@ -21,7 +21,6 @@ lineSelect.addEventListener('change', () => {
   populateKeypad(); // Populate the keypad with characters
 });
 
-// Function to populate the keypad with signal characters and random characters
 function populateKeypad() {
   const keypadContainer = document.getElementById('keypadContainer');
   keypadContainer.innerHTML = ''; // Clear existing buttons
@@ -34,25 +33,19 @@ function populateKeypad() {
   const allChars = 'ABCRLSOME0123456789'; // Pool of random characters
   const randomChars = Array.from(allChars).filter(char => !signalChars.includes(char)); // Exclude signal chars
 
-  // Shuffle function
-  function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
-
   // Combine signal characters and random characters
-  const keypadChars = shuffle([...signalChars, ...randomChars.slice(0, 9 - signalChars.length)]);
+  const keypadChars = [...signalChars, ...randomChars.slice(0, 9 - signalChars.length)];
+
+  // Sort characters in alphanumeric order
+  const sortedKeypadChars = keypadChars.sort();
 
   // Create buttons for the keypad
-  keypadChars.forEach(char => {
+  sortedKeypadChars.forEach(char => {
     const button = document.createElement('button');
     button.className = 'keypad-button';
     button.textContent = char;
     button.addEventListener('click', () => {
-      // Handle button click (e.g., populate input boxes)
+      // Handle button click
       console.log(`Button clicked: ${char}`);
     });
     keypadContainer.appendChild(button);
