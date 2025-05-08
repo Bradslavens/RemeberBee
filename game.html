@@ -7,17 +7,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="level-selection-container">
-  <label for="levelSelect">Select a Level:</label>
-  <select id="levelSelect">
-    <option value="" disabled selected>Select a Level</option>
-    <option value="1">Level 1</option>
-    <option value="2">Level 2</option>
-    <option value="3">Level 3</option>
-    <option value="4">Level 4</option>
-  </select>
-</div>
-
   <div class="line-selection-container">
     <label for="lineSelect">Select a Line:</label>
     <select id="lineSelect">
@@ -31,18 +20,12 @@
   <div class="word-container" id="wordContainer">
     <!-- Filled by JavaScript -->
   </div>
-  <div id="levelOverlay" class="overlay">
 
-  <div id="levelOverlayContent" class="overlay-content"></div>
-  </div>
   <div id="overlay" class="overlay">
     <div id="overlayContent" class="overlay-content"></div>
   </div>
-  <div id="levelOverlay" class="overlay">
-    <div id="levelOverlayContent" class="overlay-content"></div>
-  </div>
+
   <div class="keypad-container" id="keypadContainer">
-    <!-- Existing keypad buttons -->
     <button class="keypad-button">1</button>
     <button class="keypad-button">2</button>
     <button class="keypad-button">3</button>
@@ -59,10 +42,10 @@
     <button class="keypad-button">B</button>
     <button class="keypad-button">C</button>
     <button class="keypad-button" id="clearButton">Clear</button>
-    <!-- Add the Back button -->
     <button class="keypad-button" id="backButton">Back</button>
   </div>
   <div id="result"></div>
 
-  <script type="module" src="scripts.js"></script></body>
+  <script type="module" src="scripts.js"></script>
+</body>
 </html>
