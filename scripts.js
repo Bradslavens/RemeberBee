@@ -21,36 +21,7 @@ lineSelect.addEventListener('change', () => {
   populateKeypad(); // Populate the keypad with characters
 });
 
-function populateKeypad() {
-  const keypadContainer = document.getElementById('keypadContainer');
-  keypadContainer.innerHTML = ''; // Clear existing buttons
 
-  if (!currentLine) return;
-
-  const signalList = signals[currentLine].signalList;
-  const currentSignal = signalList[currentSignalIndex];
-  const signalChars = Array.from(new Set(currentSignal.split(''))); // Unique characters in the signal
-  const allChars = 'ABCRLSOME0123456789'; // Pool of random characters
-  const randomChars = Array.from(allChars).filter(char => !signalChars.includes(char)); // Exclude signal chars
-
-  // Combine signal characters and random characters
-  const keypadChars = [...signalChars, ...randomChars.slice(0, 9 - signalChars.length)];
-
-  // Sort characters in alphanumeric order
-  const sortedKeypadChars = keypadChars.sort();
-
-  // Create buttons for the keypad
-  sortedKeypadChars.forEach(char => {
-    const button = document.createElement('button');
-    button.className = 'keypad-button';
-    button.textContent = char;
-    button.addEventListener('click', () => {
-      // Handle button click
-      console.log(`Button clicked: ${char}`);
-    });
-    keypadContainer.appendChild(button);
-  });
-}
 
 // Function to check the user's guess and handle game logic
 function checkAndSubmit() {
