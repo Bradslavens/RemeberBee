@@ -1,27 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Word Guessing Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skittles Keypad</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div class="line-selection-container">
-    <label for="lineSelect">Select a Line:</label>
-    <select id="lineSelect">
-      <option value="" disabled selected>Select A Line</option>
-      <!-- Options will be populated dynamically -->
-    </select>
-  </div>
-
-  <h1>Guess the Signal</h1>
-
-  <div id="overlay" class="overlay">
-    <div id="overlayContent" class="overlay-content"></div>
-  </div>
-
-  <div class="keypad-container" id="keypadContainer">
+  <div class="keypad-container">
     <button class="keypad-button">1</button>
     <button class="keypad-button">2</button>
     <button class="keypad-button">3</button>
@@ -31,12 +19,10 @@
     <button class="keypad-button">7</button>
     <button class="keypad-button">8</button>
     <button class="keypad-button">9</button>
-    <button class="keypad-button">CLR</button>
+    <button class="keypad-button clear">Clear</button>
     <button class="keypad-button">0</button>
-    <button class="keypad-button" id="backButton">HOME</button>
+    <button class="keypad-button home">Home</button>
   </div>
-  <div id="result"></div>
-
-  <script type="module" src="scripts.js"></script>
 </body>
+
 </html>
