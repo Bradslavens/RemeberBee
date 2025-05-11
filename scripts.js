@@ -13,13 +13,16 @@ Object.keys(signals).forEach(line => {
 let currentLine = null;
 let currentSignalIndex = 0;
 let userInput = "";
+let score = 0; // Track the user's score
 
 // Add an event listener to handle line selection
 lineSelect.addEventListener('change', () => {
   currentLine = lineSelect.value;
   currentSignalIndex = 0; // Reset to the first signal
   userInput = ""; // Clear user input
+  score = 0; // Reset the score
   console.log(`Selected Line: ${currentLine}`);
+  updateScoreDisplay(); // Update the score display
 });
 
 // Add event listeners to keypad buttons
@@ -44,20 +47,30 @@ keypadButtons.forEach(button => {
 
         // Only test the input when its length matches the current signal's length
         if (userInput.length === currentSignal.length) {
+          console.log(`User Input: ${userInput}, Current Signal: ${currentSignal}`);
           if (userInput === currentSignal) {
             console.log("Correct! Moving to the next signal.");
+            score++; // Increment the score
+            updateScoreDisplay(); // Update the score display
             currentSignalIndex++; // Move to the next signal
             userInput = ""; // Reset user input
 
             // Check if we've reached the end of the signal list
             if (currentSignalIndex >= signalList.length) {
-              console.log("You've completed all signals! Restarting...");
+              console.log("You've completed all signals! You won!");
+              alert(`Congratulations! You completed all signals for ${currentLine} with a score of ${score}. Select another line to play again.`);
               currentSignalIndex = 0; // Restart from the beginning
+              userInput = ""; // Clear user input
+              score = 0; // Reset the score
+              updateScoreDisplay(); // Update the score display
             }
           } else {
             console.log("Incorrect! Resetting to the beginning.");
+            alert("Incorrect! Resetting to the beginning.");
             currentSignalIndex = 0; // Reset to the first signal
             userInput = ""; // Clear user input
+            score = 0; // Reset the score
+            updateScoreDisplay(); // Update the score display
           }
         } else {
           console.log(
@@ -68,3 +81,11 @@ keypadButtons.forEach(button => {
     }
   });
 });
+
+// Function to update the score display
+function updateScoreDisplay() {
+  const scoreDisplay = document.getElementById('scoreDisplay');
+  if (scoreDisplay) {
+    scoreDisplay.textContent = `Score: ${score}`;
+  }
+}
