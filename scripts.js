@@ -65,12 +65,8 @@ keypadButtons.forEach(button => {
               updateScoreDisplay(); // Update the score display
             }
           } else {
-            console.log("Incorrect! Resetting to the beginning.");
-            alert("Incorrect! Resetting to the beginning.");
-            currentSignalIndex = 0; // Reset to the first signal
-            userInput = ""; // Clear user input
-            score = 0; // Reset the score
-            updateScoreDisplay(); // Update the score display
+            console.log("Incorrect! Showing the correct answer.");
+            showOverlay(currentSignal); // Show the overlay with the correct answer
           }
         } else {
           console.log(
@@ -88,4 +84,26 @@ function updateScoreDisplay() {
   if (scoreDisplay) {
     scoreDisplay.textContent = `Score: ${score}`;
   }
+}
+
+// Function to show the overlay with the correct answer
+function showOverlay(correctAnswer) {
+  const overlay = document.getElementById('overlay');
+  const overlayContent = document.getElementById('overlayContent');
+  overlayContent.textContent = `Incorrect! The correct answer was: ${correctAnswer}`;
+  overlay.style.display = 'flex'; // Show the overlay
+
+  // Hide the overlay after 2 seconds
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    resetGame(); // Reset the game after showing the overlay
+  }, 2000);
+}
+
+// Function to reset the game
+function resetGame() {
+  currentSignalIndex = 0; // Reset to the first signal
+  userInput = ""; // Clear user input
+  score = 0; // Reset the score
+  updateScoreDisplay(); // Update the score display
 }

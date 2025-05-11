@@ -12,15 +12,13 @@
   <div class="game-container">
     <div class="line-selection-container">
       <label for="lineSelect">Select a Line:</label>
-      <select id="lineSelect">
-        <!-- Options will be populated dynamically -->
-      </select>
+      <select id="lineSelect"></select>
     </div>
-    
+
     <div class="score-container">
       <p id="scoreDisplay">Score: 0</p>
-    </div> 
-    
+    </div>
+
     <div class="keypad-container">
       <button class="keypad-button">1</button>
       <button class="keypad-button">2</button>
@@ -36,6 +34,11 @@
       <button class="keypad-button home">Home</button>
     </div>
   </div>
+
+  <div id="overlay" class="overlay">
+    <div id="overlayContent" class="overlay-content"></div>
+  </div>
+
   <script type="module" src="scripts.js"></script>
 </body>
 </html>
