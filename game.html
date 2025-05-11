@@ -9,20 +9,29 @@
 </head>
 
 <body>
-  <div class="keypad-container">
-    <button class="keypad-button">1</button>
-    <button class="keypad-button">2</button>
-    <button class="keypad-button">3</button>
-    <button class="keypad-button">4</button>
-    <button class="keypad-button">5</button>
-    <button class="keypad-button">6</button>
-    <button class="keypad-button">7</button>
-    <button class="keypad-button">8</button>
-    <button class="keypad-button">9</button>
-    <button class="keypad-button clear">Clear</button>
-    <button class="keypad-button">0</button>
-    <button class="keypad-button home">Home</button>
-  </div>
-</body>
+  <div class="game-container">
+    <div class="line-selection-container">
+      <label for="lineSelect">Select a Line:</label>
+      <select id="lineSelect">
+        <!-- Options will be populated dynamically -->
+      </select>
+    </div>
 
+    <div class="keypad-container">
+      <button class="keypad-button">1</button>
+      <button class="keypad-button">2</button>
+      <button class="keypad-button">3</button>
+      <button class="keypad-button">4</button>
+      <button class="keypad-button">5</button>
+      <button class="keypad-button">6</button>
+      <button class="keypad-button">7</button>
+      <button class="keypad-button">8</button>
+      <button class="keypad-button">9</button>
+      <button class="keypad-button clear">Clear</button>
+      <button class="keypad-button">0</button>
+      <button class="keypad-button home">Home</button>
+    </div>
+  </div>
+  <script type="module" src="scripts.js"></script>
+</body>
 </html>
