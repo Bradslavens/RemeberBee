@@ -106,6 +106,10 @@ function showOverlay(correctAnswer) {
   overlayContent.textContent = `Incorrect! The correct answer was: ${correctAnswer}`;
   overlay.style.display = 'flex'; // Show the overlay
 
+  // Clear the user entry display immediately
+  userInput = "";
+  updateUserEntryDisplay();
+
   // Hide the overlay after 2 seconds
   setTimeout(() => {
     overlay.style.display = 'none';
