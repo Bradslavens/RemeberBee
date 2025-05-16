@@ -105,13 +105,13 @@ function updateUserEntryDisplay() {
 function showOverlay(correctAnswer) {
   const overlay = document.getElementById('overlay');
   const overlayContent = document.getElementById('overlayContent');
-  overlayContent.innerHTML = `Incorrect! The correct answer was: <span class="signal-large">${correctAnswer}</span>`;
+  overlayContent.textContent = `Incorrect! The correct answer was: ${correctAnswer}`;
   overlay.style.display = 'flex'; // Show the overlay
 
-  // Clear the user entry display immediately
-  userInput = "";
-  updateUserEntryDisplay();
-  // Removed the setTimeout that hides the overlay after 2 seconds
+  // Always clear overlay after 2 seconds
+  setTimeout(() => {
+    overlay.style.display = 'none';
+  }, 2000);
 }
 
 // Function to reset the game
