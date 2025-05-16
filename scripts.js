@@ -35,51 +35,53 @@ keypadButtons.forEach(button => {
       userInput = ""; // Clear the input
       updateUserEntryDisplay(); // Update the user entry display
       console.log("Input cleared");
-    } else if (value === "Home") {
-      window.location.href = 'index.html'; // Redirect to home
+    } else if (value === "Submit") {
+      // Do nothing here; handled by submit button event below
     } else {
       userInput += value; // Append the button value to the user input
       updateUserEntryDisplay(); // Update the user entry display
       console.log(`User Input: ${userInput}`);
-
-      // Check if the input matches the current signal length
-      if (currentLine) {
-        const signalList = signals[currentLine].signalList;
-        const currentSignal = signalList[currentSignalIndex];
-
-        // Only test the input when its length matches the current signal's length
-        if (userInput.length === currentSignal.length) {
-          console.log(`User Input: ${userInput}, Current Signal: ${currentSignal}`);
-          if (userInput === currentSignal) {
-            console.log("Correct! Moving to the next signal.");
-            score++; // Increment the score
-            updateScoreDisplay(); // Update the score display
-            currentSignalIndex++; // Move to the next signal
-            clearUserEntryDisplayWithDelay(); // Clear the user entry display with delay
-
-            // Check if we've reached the end of the signal list
-            if (currentSignalIndex >= signalList.length) {
-              console.log("You've completed all signals! You won!");
-              alert(`Congratulations! You completed all signals for ${currentLine} with a score of ${score}. Select another line to play again.`);
-              currentSignalIndex = 0; // Restart from the beginning
-              userInput = ""; // Clear user input
-              score = 0; // Reset the score
-              updateScoreDisplay(); // Update the score display
-              updateUserEntryDisplay(); // Clear the user entry display
-            }
-          } else {
-            console.log("Incorrect! Showing the correct answer.");
-            showOverlay(currentSignal); // Show the overlay with the correct answer
-          }
-        } else {
-          console.log(
-            `Waiting for more input. Current input length: ${userInput.length}, Signal length: ${currentSignal.length}`
-          );
-        }
-      }
     }
   });
 });
+
+// Add event listener for submit button
+const submitButton = document.getElementById('submitButton');
+if (submitButton) {
+  submitButton.addEventListener('click', () => {
+    if (currentLine) {
+      const signalList = signals[currentLine].signalList;
+      const currentSignal = signalList[currentSignalIndex];
+      if (userInput.length === currentSignal.length) {
+        console.log(`User Input: ${userInput}, Current Signal: ${currentSignal}`);
+        if (userInput === currentSignal) {
+          console.log("Correct! Moving to the next signal.");
+          score++; // Increment the score
+          updateScoreDisplay(); // Update the score display
+          currentSignalIndex++; // Move to the next signal
+          clearUserEntryDisplayWithDelay(); // Clear the user entry display with delay
+
+          // Check if we've reached the end of the signal list
+          if (currentSignalIndex >= signalList.length) {
+            console.log("You've completed all signals! You won!");
+            alert(`Congratulations! You completed all signals for ${currentLine} with a score of ${score}. Select another line to play again.`);
+            currentSignalIndex = 0; // Restart from the beginning
+            userInput = ""; // Clear user input
+            score = 0; // Reset the score
+            updateScoreDisplay(); // Update the score display
+            updateUserEntryDisplay(); // Clear the user entry display
+          }
+        } else {
+          console.log("Incorrect! Showing the correct answer.");
+          showOverlay(currentSignal); // Show the overlay with the correct answer
+        }
+      } else {
+        // Optionally, give feedback if input is not the right length
+        alert(`Please enter a ${currentSignal.length}-digit code before submitting.`);
+      }
+    }
+  });
+}
 
 // Function to update the score display
 function updateScoreDisplay() {
