@@ -105,7 +105,7 @@ function updateUserEntryDisplay() {
 function showOverlay(correctAnswer) {
   const overlay = document.getElementById('overlay');
   const overlayContent = document.getElementById('overlayContent');
-  overlayContent.textContent = `Incorrect! The correct answer was: ${correctAnswer}`;
+  overlayContent.innerHTML = `Incorrect! The correct answer was: <span style="font-size: 3em; display: block; margin-top: 10px;">${correctAnswer}</span>`;
   overlay.style.display = 'flex'; // Show the overlay
 
   // Always clear overlay after 2 seconds
