@@ -68,7 +68,6 @@ if (submitButton) {
             userInput = ""; // Clear user input
             score = 0; // Reset the score
             updateScoreDisplay(); // Update the score display
-            updateUserEntryDisplay(); // Clear the user entry display
           }
         } else {
           console.log("Incorrect! Showing the correct answer.");
