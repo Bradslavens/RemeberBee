@@ -74,6 +74,9 @@ if (submitButton) {
       } else {
         console.log("Incorrect! Showing the correct answer.");
         showOverlay(currentSignal); // Show the overlay with the correct answer
+        currentSignalIndex = 0; // Reset to the first signal after a wrong guess
+        score = 0; // Reset the score after a wrong guess
+        updateScoreDisplay(); // Update the score display
       }
     }
   });
