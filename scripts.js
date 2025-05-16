@@ -33,11 +33,13 @@ keypadButtons.forEach(button => {
 
     if (value === "Clear") {
       userInput = ""; // Clear the input
+      updateUserEntryDisplay(); // Update the user entry display
       console.log("Input cleared");
     } else if (value === "Home") {
       window.location.href = 'index.html'; // Redirect to home
     } else {
       userInput += value; // Append the button value to the user input
+      updateUserEntryDisplay(); // Update the user entry display
       console.log(`User Input: ${userInput}`);
 
       // Check if the input matches the current signal length
@@ -53,7 +55,7 @@ keypadButtons.forEach(button => {
             score++; // Increment the score
             updateScoreDisplay(); // Update the score display
             currentSignalIndex++; // Move to the next signal
-            userInput = ""; // Reset user input
+            clearUserEntryDisplayWithDelay(); // Clear the user entry display with delay
 
             // Check if we've reached the end of the signal list
             if (currentSignalIndex >= signalList.length) {
@@ -63,6 +65,7 @@ keypadButtons.forEach(button => {
               userInput = ""; // Clear user input
               score = 0; // Reset the score
               updateScoreDisplay(); // Update the score display
+              updateUserEntryDisplay(); // Clear the user entry display
             }
           } else {
             console.log("Incorrect! Showing the correct answer.");
@@ -86,6 +89,14 @@ function updateScoreDisplay() {
   }
 }
 
+// Function to update the user entry display
+function updateUserEntryDisplay() {
+  const userEntryDisplay = document.getElementById('userEntryDisplay');
+  if (userEntryDisplay) {
+    userEntryDisplay.textContent = `Entry: ${userInput}`;
+  }
+}
+
 // Function to show the overlay with the correct answer
 function showOverlay(correctAnswer) {
   const overlay = document.getElementById('overlay');
@@ -106,4 +117,12 @@ function resetGame() {
   userInput = ""; // Clear user input
   score = 0; // Reset the score
   updateScoreDisplay(); // Update the score display
+}
+
+// Update the user entry display with a delay before clearing
+function clearUserEntryDisplayWithDelay() {
+  setTimeout(() => {
+    userInput = ""; // Clear user input
+    updateUserEntryDisplay(); // Clear the user entry display
+  }, 500); // 500ms delay
 }
