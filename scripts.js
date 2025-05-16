@@ -109,12 +109,7 @@ function showOverlay(correctAnswer) {
   // Clear the user entry display immediately
   userInput = "";
   updateUserEntryDisplay();
-
-  // Hide the overlay after 2 seconds
-  setTimeout(() => {
-    overlay.style.display = 'none';
-    resetGame(); // Reset the game after showing the overlay
-  }, 2000);
+  // Removed the setTimeout that hides the overlay after 2 seconds
 }
 
 // Function to reset the game
