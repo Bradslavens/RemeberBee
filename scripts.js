@@ -29,17 +29,20 @@ lineSelect.addEventListener('change', () => {
 const keypadButtons = document.querySelectorAll('.keypad-button');
 keypadButtons.forEach(button => {
   button.addEventListener('click', () => {
+    if (!currentLine) {
+      showOverlay('Please Select a line first', true);
+      return;
+    }
     const value = button.textContent;
-
     if (value === "Clear") {
-      userInput = ""; // Clear the input
-      updateUserEntryDisplay(); // Update the user entry display
+      userInput = "";
+      updateUserEntryDisplay();
       console.log("Input cleared");
     } else if (value === "Submit") {
       // Do nothing here; handled by submit button event below
     } else {
-      userInput += value; // Append the button value to the user input
-      updateUserEntryDisplay(); // Update the user entry display
+      userInput += value;
+      updateUserEntryDisplay();
       console.log(`User Input: ${userInput}`);
     }
   });
@@ -99,17 +102,21 @@ function updateUserEntryDisplay() {
 }
 
 // Function to show the overlay with the correct answer
-function showOverlay(correctAnswer) {
+function showOverlay(correctAnswer, isInfo = false) {
   const overlay = document.getElementById('overlay');
   const overlayContent = document.getElementById('overlayContent');
-  overlayContent.innerHTML = `Incorrect! The correct answer was: <span class="overlay-correct-answer">${correctAnswer}</span>`;
-  overlay.style.display = 'flex'; // Show the overlay
-
-  // Always clear overlay after 2 seconds and reset user entry
+  if (isInfo) {
+    overlayContent.innerHTML = `<span class="overlay-correct-answer">${correctAnswer}</span>`;
+  } else {
+    overlayContent.innerHTML = `Incorrect! The correct answer was: <span class="overlay-correct-answer">${correctAnswer}</span>`;
+  }
+  overlay.style.display = 'flex';
   setTimeout(() => {
     overlay.style.display = 'none';
-    userInput = "";
-    updateUserEntryDisplay();
+    if (!isInfo) {
+      userInput = "";
+      updateUserEntryDisplay();
+    }
   }, 2000);
 }
 
