@@ -52,30 +52,28 @@ if (submitButton) {
     if (currentLine) {
       const signalList = signals[currentLine].signalList;
       const currentSignal = signalList[currentSignalIndex];
-      if (userInput.length === currentSignal.length) {
-        console.log(`User Input: ${userInput}, Current Signal: ${currentSignal}`);
-        if (userInput === currentSignal) {
-          console.log("Correct! Moving to the next signal.");
-          score++; // Increment the score
-          updateScoreDisplay(); // Update the score display
-          currentSignalIndex++; // Move to the next signal
+      // Remove length check: always process the guess
+      console.log(`User Input: ${userInput}, Current Signal: ${currentSignal}`);
+      if (userInput === currentSignal) {
+        console.log("Correct! Moving to the next signal.");
+        score++; // Increment the score
+        updateScoreDisplay(); // Update the score display
+        currentSignalIndex++; // Move to the next signal
 
-          // Check if we've reached the end of the signal list
-          if (currentSignalIndex >= signalList.length) {
-            console.log("You've completed all signals! You won!");
-            alert(`Congratulations! You completed all signals for ${currentLine} with a score of ${score}. Select another line to play again.`);
-            currentSignalIndex = 0; // Restart from the beginning
-            userInput = ""; // Clear user input
-            score = 0; // Reset the score
-            updateScoreDisplay(); // Update the score display
-          }
-        } else {
-          console.log("Incorrect! Showing the correct answer.");
-          showOverlay(currentSignal); // Show the overlay with the correct answer
+        // Check if we've reached the end of the signal list
+        if (currentSignalIndex >= signalList.length) {
+          console.log("You've completed all signals! You won!");
+          alert(`Congratulations! You completed all signals for ${currentLine} with a score of ${score}. Select another line to play again.`);
+          currentSignalIndex = 0; // Restart from the beginning
+          userInput = ""; // Clear user input
+          score = 0; // Reset the score
+          updateScoreDisplay(); // Update the score display
         }
-        // Always clear user input and display after submit
         userInput = "";
         updateUserEntryDisplay();
+      } else {
+        console.log("Incorrect! Showing the correct answer.");
+        showOverlay(currentSignal); // Show the overlay with the correct answer
       }
     }
   });
@@ -104,9 +102,11 @@ function showOverlay(correctAnswer) {
   overlayContent.innerHTML = `Incorrect! The correct answer was: <span class="overlay-correct-answer">${correctAnswer}</span>`;
   overlay.style.display = 'flex'; // Show the overlay
 
-  // Always clear overlay after 2 seconds
+  // Always clear overlay after 2 seconds and reset user entry
   setTimeout(() => {
     overlay.style.display = 'none';
+    userInput = "";
+    updateUserEntryDisplay();
   }, 2000);
 }
 
