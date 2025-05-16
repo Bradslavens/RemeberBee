@@ -59,7 +59,6 @@ if (submitButton) {
           score++; // Increment the score
           updateScoreDisplay(); // Update the score display
           currentSignalIndex++; // Move to the next signal
-          clearUserEntryDisplayWithDelay(); // Clear the user entry display with delay
 
           // Check if we've reached the end of the signal list
           if (currentSignalIndex >= signalList.length) {
@@ -75,6 +74,9 @@ if (submitButton) {
           console.log("Incorrect! Showing the correct answer.");
           showOverlay(currentSignal); // Show the overlay with the correct answer
         }
+        // Always clear user input and display after submit
+        userInput = "";
+        updateUserEntryDisplay();
       } else {
         // Optionally, give feedback if input is not the right length
         alert(`Please enter a ${currentSignal.length}-digit code before submitting.`);
