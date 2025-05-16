@@ -132,6 +132,14 @@ body {
   color: #333;
 }
 
+/* Make the correct answer in the overlay 3x larger */
+.overlay-correct-answer {
+  font-size: 3em;
+  color: #e91e63;
+  display: block;
+  margin-top: 10px;
+}
+
 .signal-large {
   font-size: 3em;
   display: block;
