@@ -76,9 +76,6 @@ if (submitButton) {
         // Always clear user input and display after submit
         userInput = "";
         updateUserEntryDisplay();
-      } else {
-        // Optionally, give feedback if input is not the right length
-        alert(`Please enter a ${currentSignal.length}-digit code before submitting.`);
       }
     }
   });
